@@ -12,7 +12,14 @@ export default function Index() {
 
   return (
     <View style={styles.container}>
-      <Button title="Login" onPress={() => router.push("/home/top")} />
+      <Button
+        title="User 3"
+        onPress={() => router.navigate("/user/3?oauth=true")}
+      />
+      <Button
+        title="User 12"
+        onPress={() => router.navigate("/user/12?oauth=false")}
+      />
     </View>
   );
 }

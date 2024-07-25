@@ -4,7 +4,7 @@ export default function RootLayout() {
   return (
     <Stack>
       <Stack.Screen name="index" />
-      <Stack.Screen name="home/(tabs)" />
+      <Stack.Screen name="user/[id]/index" />
     </Stack>
   );
 }
