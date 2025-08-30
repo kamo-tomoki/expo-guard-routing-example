@@ -1,9 +1,10 @@
+import { userAtom } from "@/atoms/user";
 import { router } from "expo-router";
-import { useState } from "react";
-import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+import { useSetAtom } from "jotai";
+import { Button, StyleSheet, View } from "react-native";
 
 export default function Index() {
-  const [inputText, setInputText] = useState("");
+  const setUser = useSetAtom(userAtom);
 
   const styles = StyleSheet.create({
     container: {
@@ -11,31 +12,24 @@ export default function Index() {
       justifyContent: "center",
       alignItems: "center",
     },
-    text: {
-      fontSize: 25,
-    },
-    textInput: {
-      marginTop: 100,
-      padding: 15,
-      borderRadius: 15,
-      borderWidth: 1,
-      width: 300,
-    },
   });
+
+  const login = () => {
+    // ログインが成功したと仮定
+    setUser({
+      email: "hogehoge@example.com",
+      username: "hogehoge",
+    });
+    router.navigate("/user");
+  };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{inputText}</Text>
-      <TextInput
-        style={styles.textInput}
-        value={inputText}
-        onChangeText={setInputText}
-      />
+      <Button title="Login" onPress={login} />
       <Button
-        title="Another Page"
-        onPress={() => router.navigate("/another-page")}
+        title="Go to user page without login"
+        onPress={() => router.navigate("/user")}
       />
-      <Button title="Modal" onPress={() => router.navigate("/modal")} />
     </View>
   );
 }
